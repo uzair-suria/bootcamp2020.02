@@ -1,13 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy React.js App on Surge
+name: Deploy ReactJS App on Surge
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -22,25 +20,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-    # Install Node.js
-      - name: Install NodeJS
+      # Install NodeJS
+      - name: Install Node.js
         uses: actions/setup-node@v2-beta
         with:
           node-version: 12
-
-    # Install Yarn
+      # Install Yarn
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install # will run `yarn install` command
-
-     # Build React App with Yarn
+    
+      # Build ReactJS App with Yarn
       - name: Build React App
         run: yarn build
 
       # Install Surge
       - name: Install Surge
-      - run: npm install --global surge
-
+        run: npm install -g surge
+        
       # Deploy Surge
       - name: Deploy ReactJS App to Surge
-        run: surge ./build bootcamp2020.02-uzair.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: surge ./build bootcamp2020.02-uas.surge.sh --token ${{secrets.SURGE_TOKEN}}
